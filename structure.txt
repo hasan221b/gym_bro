@@ -1,0 +1,89 @@
+gym_tracker/
+│
+├── alembic/
+│   ├── versions/
+│   ├── env.py
+│   └── script.py.mako
+│
+├── app/
+│   │
+│   ├── api/
+│   │   └── v1/
+│   │       ├── endpoints/
+│   │       │   ├── __init__.py
+│   │       │   ├── auth.py
+│   │       │   ├── users.py
+│   │       │   ├── routines.py
+│   │       │   ├── exercises.py
+│   │       │   ├── sessions.py
+│   │       │   └── progress.py
+│   │       ├── __init__.py
+│   │       └── router.py
+│   │
+│   ├── core/
+│   │   ├── __init__.py
+│   │   ├── config.py           # App settings via pydantic BaseSettings
+│   │   ├── logger.py           # Structured logging setup
+│   │   ├── security.py         # JWT, password hashing
+│   │   └── exceptions.py       # Custom exception classes
+│   │
+│   ├── db/
+│   │   ├── __init__.py
+│   │   ├── base.py             # DeclarativeBase
+│   │   ├── session.py          # AsyncSession engine + get_db dependency
+│   │   └── init_db.py          # DB init helpers
+│   │
+│   ├── models/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── routine.py          # RoutineModel (chest day, legs day ..etc)
+│   │   ├── exercise.py         # ExerciseModel (bench press, squat ..etc)
+│   │   ├── routine_exercise.py # M2M: routine <-> exercise with sets/reps/weight
+│   │   ├── session.py          # WorkoutSessionModel (a logged workout instance)
+│   │   └── session_log.py      # SessionLogModel (actual sets/reps/weight logged)
+│   │
+│   ├── schemas/
+│   │   ├── __init__.py
+│   │   ├── user.py
+│   │   ├── routine.py
+│   │   ├── exercise.py
+│   │   ├── session.py
+│   │   ├── session_log.py
+│   │   ├── progress.py         # Response schemas for charts and analytics
+│   │   └── enums.py            # MuscleGroup, DifficultyLevel, ProgressPeriod ..etc
+│   │
+│   ├── cruds/
+│   │   ├── __init__.py
+│   │   ├── base.py             # Generic CRUDBase class
+│   │   ├── user.py
+│   │   ├── routine.py
+│   │   ├── exercise.py
+│   │   ├── session.py
+│   │   └── session_log.py
+│   │
+│   ├── services/
+│   │   ├── __init__.py
+│   │   ├── auth_service.py     # Login, register, token logic
+│   │   ├── routine_service.py  # Routine creation and management
+│   │   ├── session_service.py  # Workout session orchestration
+│   │   └── progress_service.py # Weekly/monthly analysis and chart data
+│   │
+│   ├── utils/
+│   │   ├── __init__.py
+│   │   ├── date_utils.py       # Week/month range helpers
+│   │   ├── math_utils.py       # 1RM calc, volume calc, progression delta
+│   │   └── chart_utils.py      # Data formatting for frontend charts
+│   │
+│   └── main.py                 # FastAPI app factory, middleware, lifespan
+│
+├── tests/
+│   ├── conftest.py
+│   ├── test_routines.py
+│   ├── test_sessions.py
+│   └── test_progress.py
+│
+├── .env
+├── .env.example
+├── alembic.ini
+├── requirements.txt
+└── README.md
