@@ -7,6 +7,8 @@ from pydantic import BaseModel, model_validator
 class BodyMetricCreate(BaseModel):
     weight_kg: Optional[float] = None
     body_fat_pct: Optional[float] = None
+    age: Optional[int] = None
+    height_cm: Optional[float] = None
 
     @model_validator(mode="after")
     def at_least_one_field(self):
@@ -21,6 +23,8 @@ class BodyMetricResponse(BaseModel):
     recorded_at: date
     weight_kg: Optional[float]
     body_fat_pct: Optional[float]
+    age: Optional[int]
+    height_cm: Optional[float]
     created_at: datetime
 
     model_config = {"from_attributes": True}

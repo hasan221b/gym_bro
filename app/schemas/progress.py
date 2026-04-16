@@ -83,6 +83,8 @@ class BodyMetricPoint(BaseModel):
     recorded_at: date
     weight_kg: Optional[float]
     body_fat_pct: Optional[float]
+    age: Optional[int]
+    height_cm: Optional[float]
 
 
 class BodyMetricTrendResponse(BaseModel):

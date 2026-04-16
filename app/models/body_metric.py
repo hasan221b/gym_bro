@@ -1,7 +1,7 @@
 import uuid
 from datetime import date, datetime
 from typing import Optional
-from sqlalchemy import Float, BigInteger, ForeignKey, TIMESTAMP, DATE, func
+from sqlalchemy import Float, Integer, BigInteger, ForeignKey, TIMESTAMP, DATE, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -28,6 +28,8 @@ class UserBodyMetric(Base):
     )
     weight_kg: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     body_fat_pct: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
+    age: Mapped[Optional[int]] = mapped_column(Integer, nullable=True)
+    height_cm: Mapped[Optional[float]] = mapped_column(Float, nullable=True)
     created_at: Mapped[datetime] = mapped_column(
         TIMESTAMP(timezone=True),
         server_default=func.now(),

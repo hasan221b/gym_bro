@@ -19,7 +19,7 @@ async def reset_data(db: AsyncSession = Depends(get_db)):
             routines,
             user_body_metrics,
             users
-        RESTART IDENTITY
+        RESTART IDENTITY CASCADE
     """))
     await db.commit()
     return {"detail": "All data cleared except exercises"}
