@@ -1,4 +1,4 @@
-from app.services.agentic.schema_builder import build_schema
+from app.services.agentic.chat_agent.schema_builder import build_schema
 
 
 def build_instructions() -> str:

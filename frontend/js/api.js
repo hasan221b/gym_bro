@@ -62,4 +62,14 @@ const api = {
         request('GET', `/progress/body?user_id=${userId}&start_date=${start}&end_date=${end}`),
     logBodyMetric: (userId, data) =>
         request('POST', `/progress/body?user_id=${userId}`, data),
+
+    // Agent
+    chat: (userId, message) =>
+        request('POST', '/agent/chat', { user_id: userId, message }),
+
+    review: (userId, days = 30) =>
+        request('POST', '/agent/review', { user_id: userId, days }),
+
+    createRoutineAI: (userId, answers) =>
+        request('POST', '/agent/create-routine', { user_id: userId, answers }),
 };

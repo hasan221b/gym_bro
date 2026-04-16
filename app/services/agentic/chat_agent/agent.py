@@ -1,9 +1,7 @@
 from google.adk.agents import Agent
 from google.adk.tools import AgentTool, google_search
-from app.services.agentic.subagents.gym_expert import gym_expert_agent
-from app.services.agentic.subagents.gym_analyst import gym_analyst_agent
-from app.services.agentic.tools import get_data, create_routine
-from app.services.agentic.prompt import build_instructions
+from app.services.agentic.chat_agent.tools import get_data
+from app.services.agentic.chat_agent.prompt import build_instructions
 
 _search_agent = Agent(
     name="search_agent",
@@ -23,6 +21,5 @@ root_agent = Agent(
     model="gemini-2.5-flash",
     description="Rex — AI fitness coach for GymBro. Analyses workout data, rates routines, and gives evidence-based training advice.",
     instruction=build_instructions(),
-    sub_agents=[gym_expert_agent, gym_analyst_agent],
     tools=[get_data, AgentTool(agent=_search_agent)],
 )

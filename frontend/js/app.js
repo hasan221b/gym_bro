@@ -29,6 +29,7 @@ function navigateTo(page) {
         session: renderSession,
         progress: renderProgress,
         exercises: renderExercises,
+        chat: renderChat,
     };
     if (renders[page]) renders[page]();
 }

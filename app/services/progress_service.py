@@ -229,6 +229,8 @@ async def get_body_metric_trend(
                 recorded_at=m.recorded_at,
                 weight_kg=m.weight_kg,
                 body_fat_pct=m.body_fat_pct,
+                age=m.age,
+                height_cm=m.height_cm,
             )
             for m in metrics
         ]

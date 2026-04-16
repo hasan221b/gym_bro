@@ -6,7 +6,10 @@
     <title>GymBro</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
 
@@ -28,6 +31,7 @@
             <div id="page-session" class="page hidden"></div>
             <div id="page-progress" class="page hidden"></div>
             <div id="page-exercises" class="page hidden"></div>
+            <div id="page-chat" class="page hidden"></div>
         </main>
 
         <!-- Bottom Navigation -->
@@ -51,6 +55,10 @@
                 <svg viewBox="0 0 24 24"><path d="M6.5 6.5h11M6.5 17.5h11M4 12h16"/></svg>
                 <span>Exercises</span>
             </button>
+            <button class="nav-btn" data-page="chat">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.03 2 11c0 2.64 1.16 5.01 3 6.71V22l4.5-2.5c.82.16 1.66.25 2.5.25 5.52 0 10-4.03 10-9S17.52 2 12 2z"/></svg>
+                <span>Rex</span>
+            </button>
         </nav>
 
     </div>
@@ -58,12 +66,13 @@
     <!-- Toast notification -->
     <div id="toast"></div>
 
-    <script src="js/api.js?v=2"></script>
+    <script src="js/api.js?v=4"></script>
     <script src="js/pages/home.js?v=2"></script>
-    <script src="js/pages/routines.js?v=2"></script>
+    <script src="js/pages/routines.js?v=5"></script>
     <script src="js/pages/session.js?v=2"></script>
     <script src="js/pages/progress.js?v=2"></script>
     <script src="js/pages/exercises.js?v=2"></script>
+    <script src="js/pages/chat.js?v=4"></script>
     <script src="js/app.js?v=2"></script>
 </body>
 </html>

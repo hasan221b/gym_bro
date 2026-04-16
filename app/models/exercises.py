@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 from typing import Optional
-from sqlalchemy import String, Boolean, BigInteger, Text, ForeignKey, TIMESTAMP, UniqueConstraint, func
+from sqlalchemy import String, Boolean, BigInteger, Text, ForeignKey, TIMESTAMP, UniqueConstraint, Index, func
 from sqlalchemy.dialects.postgresql import UUID, ARRAY, ENUM as PgEnum
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -23,6 +23,10 @@ class Exercise(Base):
         # Global exercises (created_by IS NULL) are unique by name.
         # Custom exercises are unique per user — same name allowed across users.
         UniqueConstraint("name", "created_by", name="uq_exercise_name_creator"),
+        # Speed up the most common query patterns
+        Index("ix_exercises_is_custom", "is_custom"),
+        Index("ix_exercises_equipment", "equipment"),
+        Index("ix_exercises_created_by", "created_by"),
     )
 
     id: Mapped[uuid.UUID] = mapped_column(

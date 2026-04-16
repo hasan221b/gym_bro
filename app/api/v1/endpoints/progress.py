@@ -97,4 +97,6 @@ async def log_body_metric(
         "user_id": user_id,
         "weight_kg": data.weight_kg,
         "body_fat_pct": data.body_fat_pct,
+        "age": data.age,
+        "height_cm": data.height_cm,
     })

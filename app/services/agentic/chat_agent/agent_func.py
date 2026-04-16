@@ -13,7 +13,7 @@ from google.adk.runners import Runner
 from google.adk.sessions import InMemorySessionService
 from google.genai import types
 
-from app.services.agentic.agent import root_agent
+from app.services.agentic.chat_agent.agent import root_agent
 
 # ── Session store (lives for the lifetime of the process) ─────────────────────
 _session_service = InMemorySessionService()
@@ -66,20 +66,23 @@ async def run_rex(user_id: int, message: str) -> str:
         parts=[types.Part(text=full_message)],
     )
 
-    final_response = ""
+    result = None
     async for event in _runner.run_async(
         user_id=session_id,
         session_id=session_id,
         new_message=content,
     ):
-        if (
-            event.is_final_response()
-            and event.content
-            and event.content.parts
-        ):
-            final_response = event.content.parts[0].text
-            result = {
-                "response": final_response,
-                "session_id": session_id,
-            }
-    return result or "I couldn't generate a response. Please try again."
+        if event.is_final_response() and event.content and event.content.parts:
+            final_response = "".join(
+                part.text
+                for part in event.content.parts
+                if hasattr(part, "text") and part.text
+            ).strip()
+
+            if final_response:
+                result = {
+                    "response": final_response,
+                    "session_id": session_id,
+                }
+
+    return result or {"response": "I couldn't generate a response. Please try again.", "session_id": session_id}
